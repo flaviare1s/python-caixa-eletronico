@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Extrato</title>
+</head>
+
+<body>
+  <h1>Extrato de Transações</h1>
+
+  <ul>
+    {% for transacao in extrato %}
+    <li>{{ transacao }}</li>
+    {% else %}
+    <li>Nenhuma transação registrada.</li>
+    {% endfor %}
+  </ul>
+
+  <br>
+  <a href="/">Voltar para o Saldo</a>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/styles.css">
+  <title>Simulador de Caixa Eletrônico</title>
+</head>
+
+<body>
+  <h1>Bem-vindo ao Simulador de Caixa Eletrônico</h1>
+
+  <p>Seu saldo é: R${{ saldo }}</p>
+
+  <h3>Extrato</h3>
+  <ul>
+    {% for transacao in extrato %}
+    <li>{{ transacao }}</li>
+    {% else %}
+    <li>Nenhuma transação registrada.</li>
+    {% endfor %}
+  </ul>
+
+  <h2>Depósito</h2>
+  <form method="POST" action="/depositar">
+    <label for="valor_deposito">Valor do Depósito:</label>
+    <input type="number" id="valor_deposito" name="valor_deposito" required>
+    <button type="submit">Depositar</button>
+  </form>
+
+  <h2>Saque</h2>
+  <form method="POST" action="/sacar">
+    <label for="valor_saque">Valor do Saque:</label>
+    <input type="number" id="valor_saque" name="valor_saque" required>
+    <button type="submit">Sacar</button>
+  </form>
+
+  <br>
+</body>
+
+</html>
