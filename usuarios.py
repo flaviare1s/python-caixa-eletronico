@@ -1,6 +1,5 @@
 import datetime
 
-# Dicionário para armazenar os dados dos usuários
 usuarios = {}
 
 def cadastrar_usuario():
@@ -28,7 +27,7 @@ def autenticar_usuario():
         senha_digitada = input("Digite a senha: ")
         if senha_digitada == usuarios[usuario]['senha']:
             print("Acesso permitido!")
-            return usuario  # Retorna o nome do usuário autenticado
+            return usuario
         else:
             tentativas -= 1
             print(f"Senha incorreta. Você tem {tentativas} tentativas restantes.")
