@@ -59,3 +59,14 @@ input[type="text"], input[type="password"], input[type="number"] {
 form {
     margin-top: 20px;
 }
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.danger {
+    color: red;
+    font-size: 12px;
+}

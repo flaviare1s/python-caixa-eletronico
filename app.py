@@ -1,6 +1,6 @@
 import json
 import os
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 import datetime
 
 app = Flask(__name__)
@@ -50,16 +50,40 @@ def cadastro():
 # Login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST':
-        usuario = request.form['usuario']
-        senha = request.form['senha']
-        
-        usuarios = carregar_usuarios()
-        
+    if 'tentativas' not in session:
+        session['tentativas'] = {}
+
+    MAX_TENTATIVAS = 3
+    usuario = request.form.get('usuario') if request.method == 'POST' else None
+    senha = request.form.get('senha') if request.method == 'POST' else None
+    
+    usuarios = carregar_usuarios()
+
+    if usuario:
+        # Verifica se a conta está bloqueada
+        if usuario in session['tentativas'] and session['tentativas'][usuario].get('bloqueado', False):
+            flash("Sua conta está bloqueada devido a múltiplas tentativas de login malsucedidas. Tente novamente mais tarde.", "danger")
+            return redirect(url_for('login'))
+
+        # Verifica se as credenciais são válidas
         if usuario in usuarios and usuarios[usuario]['senha'] == senha:
+            session['tentativas'][usuario] = {'tentativas': 0, 'bloqueado': False}
+            flash("Login realizado com sucesso!", "success")
             return redirect(url_for('dashboard', usuario=usuario))
         else:
-            flash("Credenciais inválidas.", "danger")
+            # Incrementa as tentativas
+            if usuario in session['tentativas']:
+                session['tentativas'][usuario]['tentativas'] += 1
+            else:
+                session['tentativas'][usuario] = {'tentativas': 1, 'bloqueado': False}
+
+            # Se o número máximo de tentativas for alcançado, bloqueia a conta
+            if session['tentativas'][usuario]['tentativas'] >= MAX_TENTATIVAS:
+                session['tentativas'][usuario]['bloqueado'] = True
+                flash("Número máximo de tentativas atingido. Sua conta foi bloqueada.", "danger")
+            else:
+                flash(f"Credenciais inválidas. Tentativas restantes: {MAX_TENTATIVAS - session['tentativas'][usuario]['tentativas']}", "danger")
+            
             return redirect(url_for('login'))
     
     return render_template("login.html")
