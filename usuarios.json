@@ -33,5 +33,8 @@
         "senha": "5678",
         "saldo": 0,
         "extrato": []
+    },
+    "Flavia Reis": {
+        "senha": "1234"
     }
 }

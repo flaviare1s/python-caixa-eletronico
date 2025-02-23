@@ -43,8 +43,8 @@ def cadastro():
             return redirect(url_for('cadastro'))
 
         # Verifica a força da senha (exemplo simples, pode ser mais complexo)
-        if len(senha) < 6:
-            flash("A senha deve ter pelo menos 6 caracteres.", "danger")
+        if len(senha) < 4:
+            flash("A senha deve ter pelo menos 4 caracteres.", "danger")
             return redirect(url_for('cadastro'))
 
         # Caso contrário, cria o novo usuário
