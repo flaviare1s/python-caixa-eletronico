@@ -34,18 +34,27 @@ def cadastro():
         usuario = request.form['usuario']
         senha = request.form['senha']
         
+        # Carregar usuários cadastrados
         usuarios = carregar_usuarios()
-        
+
+        # Verifica se o usuário já existe
         if usuario in usuarios:
-            flash("Usuário já existe.", "danger")
+            flash("O nome de usuário já existe. Escolha outro.", "danger")
             return redirect(url_for('cadastro'))
-        else:
-            usuarios[usuario] = {'senha': senha, 'saldo': 0, 'extrato': []}
-            salvar_usuarios(usuarios)
-            flash("Cadastro realizado com sucesso!", "success")
-            return redirect(url_for('login'))
+
+        # Verifica a força da senha (exemplo simples, pode ser mais complexo)
+        if len(senha) < 6:
+            flash("A senha deve ter pelo menos 6 caracteres.", "danger")
+            return redirect(url_for('cadastro'))
+
+        # Caso contrário, cria o novo usuário
+        usuarios[usuario] = {'senha': senha}
+        salvar_usuarios(usuarios)  # Função para salvar o novo usuário no arquivo ou banco de dados
+        flash("Cadastro realizado com sucesso!", "success")
+        return redirect(url_for('login'))
     
     return render_template("cadastro.html")
+
 
 # Login
 @app.route('/login', methods=['GET', 'POST'])
