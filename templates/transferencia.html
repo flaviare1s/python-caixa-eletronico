@@ -14,7 +14,7 @@
     <form action="{{ url_for('transferencia', usuario=usuario) }}" method="POST">
       <input type="text" name="destinatario" placeholder="Destinatário" required>
       <input type="number" name="valor" placeholder="Valor" required>
-      <button type="submit">Transferir</button>
+      <button class="btn" type="submit">Transferir</button>
     </form>
     <a href="{{ url_for('dashboard', usuario=usuario) }}" class="btn">Voltar ao Dashboard</a>
   </div>

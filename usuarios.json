@@ -22,7 +22,7 @@
     },
     "Flavia": {
         "senha": "1234",
-        "saldo": 3800.0,
+        "saldo": 3790.0,
         "extrato": [
             "Dep\u00f3sito: R$1000.00 - Data/Hora: 2025-02-23 13:13:09",
             "Dep\u00f3sito: R$1000.00 - Data/Hora: 2025-02-23 14:02:54",
@@ -33,7 +33,8 @@
             "Dep\u00f3sito: R$3000.00 - Data/Hora: 2025-02-23 14:03:58",
             "Saque: R$1200.00 - Data/Hora: 2025-02-23 14:04:24",
             "Saque: R$300.00 - Data/Hora: 2025-02-23 14:07:34",
-            "Saque: R$700.00 - Data/Hora: 2025-02-23 14:07:44"
+            "Saque: R$700.00 - Data/Hora: 2025-02-23 14:07:44",
+            "Transfer\u00eancia enviada: R$10.00 para Joca - Data/Hora: 2025-02-23 14:09:30"
         ],
         "saques_realizados": 0,
         "total_sacado": 0,
@@ -41,8 +42,10 @@
     },
     "Joca": {
         "senha": "5678",
-        "saldo": 0,
-        "extrato": []
+        "saldo": 10.0,
+        "extrato": [
+            "Transfer\u00eancia recebida: R$10.00 de Flavia - Data/Hora: 2025-02-23 14:09:30"
+        ]
     },
     "Flavia Reis": {
         "senha": "1234"
