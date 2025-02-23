@@ -11,9 +11,21 @@
 <body>
   <div class="form-container">
     <h2>Realizar Saque</h2>
+
+    <!-- Exibir mensagens de flash -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul class="danger">
+      {% for category, message in messages %}
+      <li class="{{ category }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
     <form action="{{ url_for('saque', usuario=usuario) }}" method="POST">
       <input type="number" name="valor" placeholder="Valor" required>
-      <button type="submit">Sacar</button>
+      <button class="btn" type="submit">Sacar</button>
     </form>
     <a href="{{ url_for('dashboard', usuario=usuario) }}" class="btn">Voltar ao Dashboard</a>
   </div>

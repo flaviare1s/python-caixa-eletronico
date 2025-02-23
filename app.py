@@ -2,6 +2,7 @@ import json
 import os
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 import datetime
+from urllib.parse import quote, unquote
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
@@ -78,7 +79,7 @@ def login():
         if usuario in usuarios and usuarios[usuario]['senha'] == senha:
             session['tentativas'][usuario] = {'tentativas': 0, 'bloqueado': False}
             flash("Login realizado com sucesso!", "success")
-            return redirect(url_for('dashboard', usuario=usuario))
+            return redirect(url_for('dashboard', usuario=quote(usuario)))  # Codificando a URL do usuário
         else:
             # Incrementa as tentativas
             if usuario in session['tentativas']:
@@ -100,25 +101,27 @@ def login():
 # Dashboard
 @app.route('/dashboard/<usuario>')
 def dashboard(usuario):
+    usuario = unquote(usuario)  # Decodificando a URL do usuário
     usuarios = carregar_usuarios()
     if usuario not in usuarios:
         return redirect(url_for('login'))
     
     return render_template("dashboard.html", usuario=usuario)
 
-
 # Ver Saldo
 @app.route('/ver_saldo/<usuario>')
 def ver_saldo(usuario):
+    usuario = unquote(usuario)
     usuarios = carregar_usuarios()
     if usuario not in usuarios:
         return redirect(url_for('login'))
-    saldo = usuarios[usuario]['saldo']
+    saldo = usuarios[usuario].get('saldo', 0)
     return render_template("saldo.html", usuario=usuario, saldo=saldo)
 
 # Alterar Senha
 @app.route('/alterar_senha/<usuario>', methods=['GET', 'POST'])
 def alterar_senha(usuario):
+    usuario = unquote(usuario)
     usuarios = carregar_usuarios()
     
     if usuario not in usuarios:
@@ -129,13 +132,14 @@ def alterar_senha(usuario):
         usuarios[usuario]['senha'] = nova_senha
         salvar_usuarios(usuarios)
         flash("Senha alterada com sucesso!", "success")
-        return redirect(url_for('dashboard', usuario=usuario))
+        return redirect(url_for('dashboard', usuario=quote(usuario)))  # Codificando a URL do usuário
     
     return render_template("alterar_senha.html", usuario=usuario)
 
 # Extrato
 @app.route('/extrato/<usuario>')
 def extrato(usuario):
+    usuario = unquote(usuario)
     usuarios = carregar_usuarios()
     if usuario not in usuarios:
         return redirect(url_for('login'))
@@ -153,23 +157,29 @@ def saque(usuario):
 
     if request.method == 'POST':
         valor = float(request.form['valor'])
+        
         if valor <= 0:
             flash("Valor inválido.", "danger")
         elif valor > usuarios[usuario]['saldo']:
             flash("Saldo insuficiente.", "danger")
+        elif valor + usuarios[usuario].get('saque_diario', 0) > 1000:
+            flash("Limite de saque diário atingido.", "danger")
         else:
             usuarios[usuario]['saldo'] -= valor
+            usuarios[usuario]['saque_diario'] = usuarios[usuario].get('saque_diario', 0) + valor
             data_hora = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             usuarios[usuario]['extrato'].append(f"Saque: R${valor:.2f} - Data/Hora: {data_hora}")
             salvar_usuarios(usuarios)
             flash("Saque realizado com sucesso!", "success")
-        return redirect(url_for('dashboard', usuario=usuario))
+        
+        return redirect(url_for('saque', usuario=usuario))  # Redirecionar de volta para o saque, para mostrar as mensagens
     
     return render_template("saque.html", usuario=usuario)
 
 # Depósito
 @app.route('/deposito/<usuario>', methods=['GET', 'POST'])
 def deposito(usuario):
+    usuario = unquote(usuario)
     usuarios = carregar_usuarios()
     
     if usuario not in usuarios:
@@ -185,13 +195,14 @@ def deposito(usuario):
             usuarios[usuario]['extrato'].append(f"Depósito: R${valor:.2f} - Data/Hora: {data_hora}")
             salvar_usuarios(usuarios)
             flash("Depósito realizado com sucesso!", "success")
-        return redirect(url_for('dashboard', usuario=usuario))
+        return redirect(url_for('dashboard', usuario=quote(usuario)))
 
     return render_template("deposito.html", usuario=usuario)
 
 # Transferência
 @app.route('/transferencia/<usuario>', methods=['GET', 'POST'])
 def transferencia(usuario):
+    usuario = unquote(usuario)
     usuarios = carregar_usuarios()
     
     if usuario not in usuarios:
@@ -214,7 +225,7 @@ def transferencia(usuario):
             usuarios[destinatario]['extrato'].append(f"Transferência recebida: R${valor:.2f} de {usuario} - Data/Hora: {data_hora}")
             salvar_usuarios(usuarios)
             flash(f"Transferência de R${valor:.2f} realizada com sucesso para {destinatario}!", "success")
-        return redirect(url_for('dashboard', usuario=usuario))
+        return redirect(url_for('dashboard', usuario=quote(usuario)))
 
     return render_template("transferencia.html", usuario=usuario)
 
