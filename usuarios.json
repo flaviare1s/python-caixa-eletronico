@@ -1,0 +1,37 @@
+{
+    "user1": {
+        "senha": "1234",
+        "saldo": 100,
+        "extrato": [],
+        "saques_realizados": 0,
+        "total_sacado": 0
+    },
+    "user2": {
+        "senha": "5678",
+        "saldo": 200,
+        "extrato": [],
+        "saques_realizados": 0,
+        "total_sacado": 0
+    },
+    "user3": {
+        "senha": "abcd",
+        "saldo": 300,
+        "extrato": [],
+        "saques_realizados": 0,
+        "total_sacado": 0
+    },
+    "Flavia": {
+        "senha": "1234",
+        "saldo": 1000.0,
+        "extrato": [
+            "Dep\u00f3sito: R$1000.00 - Data/Hora: 2025-02-23 13:13:09"
+        ],
+        "saques_realizados": 0,
+        "total_sacado": 0
+    },
+    "Joca": {
+        "senha": "5678",
+        "saldo": 0,
+        "extrato": []
+    }
+}

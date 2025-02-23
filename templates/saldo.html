@@ -4,20 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Extrato</title>
+  <title>Saldo</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
   <div class="container">
-    <h2>Extrato</h2>
-    <ul>
-      {% for item in extrato %}
-      <li>{{ item }}</li>
-      {% endfor %}
-    </ul>
+    <h2>Seu Saldo: R$ {{ saldo }}</h2>
     <a href="{{ url_for('dashboard', usuario=usuario) }}" class="btn">Voltar ao Dashboard</a>
   </div>
 </body>
 
 </html>
+

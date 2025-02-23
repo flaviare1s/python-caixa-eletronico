@@ -4,18 +4,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Extrato</title>
+  <title>Depósito</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
-  <div class="container">
-    <h2>Extrato</h2>
-    <ul>
-      {% for item in extrato %}
-      <li>{{ item }}</li>
-      {% endfor %}
-    </ul>
+  <div class="form-container">
+    <h2>Realizar Depósito</h2>
+    <form action="{{ url_for('deposito', usuario=usuario) }}" method="POST">
+      <input type="number" name="valor" placeholder="Valor" required>
+      <button class="btn" type="submit">Depositar</button>
+    </form>
     <a href="{{ url_for('dashboard', usuario=usuario) }}" class="btn">Voltar ao Dashboard</a>
   </div>
 </body>

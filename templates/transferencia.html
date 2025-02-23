@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transferência</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+  <div class="form-container">
+    <h2>Realizar Transferência</h2>
+    <form action="{{ url_for('transferencia', usuario=usuario) }}" method="POST">
+      <input type="text" name="destinatario" placeholder="Destinatário" required>
+      <input type="number" name="valor" placeholder="Valor" required>
+      <button type="submit">Transferir</button>
+    </form>
+    <a href="{{ url_for('dashboard', usuario=usuario) }}" class="btn">Voltar ao Dashboard</a>
+  </div>
+</body>
+
+</html>

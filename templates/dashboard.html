@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+  <div class="container">
+    <h2>Bem-vindo(a) ao seu Dashboard, {{ usuario }}!</h2>
+    <a href="{{ url_for('ver_saldo', usuario=usuario) }}" class="btn">Ver Saldo</a>
+    <a href="{{ url_for('deposito', usuario=usuario) }}" class="btn">Depositar</a>
+    <a href="{{ url_for('saque', usuario=usuario) }}" class="btn">Sacar</a>
+    <a href="{{ url_for('transferencia', usuario=usuario) }}" class="btn">Transferir</a>
+    <a href="{{ url_for('alterar_senha', usuario=usuario) }}" class="btn">Alterar Senha</a>
+    <a href="{{ url_for('extrato', usuario=usuario) }}" class="btn">Ver Extrato</a>
+    <a href="{{ url_for('logout') }}" class="btn">Sair</a>
+  </div>
+</body>
+
+</html>
