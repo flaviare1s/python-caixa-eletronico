@@ -2,7 +2,7 @@
 
 ## Equipe
 - [Flávia Reis](https://github.com/flaviare1s)
-- [Mariana Angeli](https://github.com/)
+- [Mariana](https://github.com/)
 - [Miguel Rodrigues](https://github.com/)
 - [Gabriel Andrade](https://github.com/Bieolzard)
 - [Renato Costa](https://github.com/RenatinoCS)
