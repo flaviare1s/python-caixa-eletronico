@@ -4,7 +4,7 @@
 - [Flávia Reis](https://github.com/flaviare1s)
 - [Miguel Rodrigues](https://github.com/)
 - [Gabriel Mateus](https://github.com/Bieolzard)
-- [Renato Costa](hhttps://github.com/RenatinoCS)
+- [Renato Costa](https://github.com/RenatinoCS)
 - [Silvia Neves](https://github.com/SilviaNeves)
 
 
