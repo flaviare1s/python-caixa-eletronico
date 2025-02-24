@@ -1,5 +1,13 @@
 # Python - Simulador de Caixa Eletrônico
 
+## Equipe
+- [Flávia Reis](https://github.com/flaviare1s)
+- [Miguel Rodrigues](https://github.com/)
+- [Gabriel Mateus](https://github.com/Bieolzard)
+- [Renato Costa](hhttps://github.com/RenatinoCS)
+- [Silvia Neves](https://github.com/SilviaNeves)
+
+
 ## Projeto feito no bootcamp de Análise de Dados da SoulCode Academy
 
 ### Desenvolvimento de um Simulador de Caixa Eletrônico em Python
