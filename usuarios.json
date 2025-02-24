@@ -22,7 +22,7 @@
     },
     "Flavia": {
         "senha": "1234",
-        "saldo": 3790.0,
+        "saldo": 3890.0,
         "extrato": [
             "Dep\u00f3sito: R$1000.00 - Data/Hora: 2025-02-23 13:13:09",
             "Dep\u00f3sito: R$1000.00 - Data/Hora: 2025-02-23 14:02:54",
@@ -34,7 +34,8 @@
             "Saque: R$1200.00 - Data/Hora: 2025-02-23 14:04:24",
             "Saque: R$300.00 - Data/Hora: 2025-02-23 14:07:34",
             "Saque: R$700.00 - Data/Hora: 2025-02-23 14:07:44",
-            "Transfer\u00eancia enviada: R$10.00 para Joca - Data/Hora: 2025-02-23 14:09:30"
+            "Transfer\u00eancia enviada: R$10.00 para Joca - Data/Hora: 2025-02-23 14:09:30",
+            "Dep\u00f3sito: R$100.00 - Data/Hora: 2025-02-24 09:44:08"
         ],
         "saques_realizados": 0,
         "total_sacado": 0,

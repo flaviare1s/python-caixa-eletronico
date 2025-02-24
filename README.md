@@ -10,6 +10,12 @@ Em um mundo onde a digitalização dos serviços bancários é cada vez mais ess
 #### Desafio
 Desenvolver um Simulador de Caixa Eletrônico utilizando a linguagem de programação Python, capaz de realizar operações bancárias simples como consulta de saldo, depósitos, saques e verificação de extrato. O sistema deve garantir a segurança do usuário através da implementação de uma senha de acesso e limitar a quantidade de saques diários.
 
+#### Tecnologias Utilizadas
+- Python
+- Flask
+- HTML
+- CSS
+
 #### Requisitos Funcionais
 O sistema deverá ter as seguintes funcionalidades:
  ##### Ver o saldo da conta:
